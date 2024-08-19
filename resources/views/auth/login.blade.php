@@ -1,73 +1,424 @@
-@extends('layouts.app')
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+<!--
+ =========================================================
+* Black Dashboard PRO - v1.1.1
+=========================================================
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
+* Product Page: https://themes.getbootstrap.com/product/black-dashboard-pro-premium-bootstrap-4-admin/
+* Copyright 2019 Creative Tim (https://www.creative-tim.com)
 
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+* Coded by Creative Tim
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+=========================================================
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/apple-icon.png">
+<link rel="icon" type="image/png" href="../../assets/img/favicon.png">
+<title>
+    Black Dashboard PRO by Creative Tim
+  </title>
 
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+<link rel="canonical" href="https://www.creative-tim.com/product/black-dashboard" />
 
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+<meta name="keywords" content="creative tim, html dashboard, html css dashboard, web dashboard, bootstrap 4 dashboard, bootstrap 4, css3 dashboard, bootstrap 4 admin, black dashboard bootstrap 4 dashboard, frontend, responsive bootstrap 4 dashboard, black design, black dashboard bootstrap 4 dashboard">
+<meta name="description" content="Black Dashboard PRO is a beautiful Bootstrap 4 admin dashboard with a large number of components, designed to look beautiful, clean and organized. If you are looking for a tool to manage dates about your business, this dashboard is the thing for you.">
 
-                        <div class="row mb-3">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+<meta itemprop="name" content="Black Dashboard PRO by Creative Tim">
+<meta itemprop="description" content="Black Dashboard PRO is a beautiful Bootstrap 4 admin dashboard with a large number of components, designed to look beautiful, clean and organized. If you are looking for a tool to manage dates about your business, this dashboard is the thing for you.">
+<meta itemprop="image" content="https://s3.amazonaws.com/creativetim_bucket/products/93/opt_bd_thumbnail.jpg">
 
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+<meta name="twitter:card" content="product">
+<meta name="twitter:site" content="@creativetim">
+<meta name="twitter:title" content="Black Dashboard PRO by Creative Tim">
+<meta name="twitter:description" content="Black Dashboard PRO is a beautiful Bootstrap 4 admin dashboard with a large number of components, designed to look beautiful, clean and organized. If you are looking for a tool to manage dates about your business, this dashboard is the thing for you.">
+<meta name="twitter:creator" content="@creativetim">
+<meta name="twitter:image" content="https://s3.amazonaws.com/creativetim_bucket/products/93/opt_bd_thumbnail.jpg">
 
-                        <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
+<meta property="fb:app_id" content="655968634437471">
+<meta property="og:title" content="Black Dashboard PRO by Creative Tim" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://demos.creative-tim.com/black-dashboard-pro/examples/dashboard.html" />
+<meta property="og:image" content="https://s3.amazonaws.com/creativetim_bucket/products/93/opt_bd_thumbnail.jpg" />
+<meta property="og:description" content="Black Dashboard PRO is a beautiful Bootstrap 4 admin dashboard with a large number of components, designed to look beautiful, clean and organized. If you are looking for a tool to manage dates about your business, this dashboard is the thing for you." />
+<meta property="og:site_name" content="Creative Tim" />
 
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+<link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
+<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+
+<link href="{{asset('assets/css/nucleo-icons.css')}}" rel="stylesheet" />
+
+<link href="{{asset('assets/css/black-dashboard.min.css')}}" rel="stylesheet" />
+
+<!-- <link href="../../assets/demo/demo.css" rel="stylesheet" /> -->
+</head>
+<body class="login-page">
+
+<nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent fixed-top">
+<div class="container-fluid">
+<div class="navbar-wrapper">
+<div class="navbar-toggle d-inline">
+<button type="button" class="navbar-toggler">
+<span class="navbar-toggler-bar bar1"></span>
+<span class="navbar-toggler-bar bar2"></span>
+<span class="navbar-toggler-bar bar3"></span>
+</button>
 </div>
-@endsection
+<a class="navbar-brand" href="javascript:void(0)">Login Page</a>
+</div>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-bar navbar-kebab"></span>
+<span class="navbar-toggler-bar navbar-kebab"></span>
+<span class="navbar-toggler-bar navbar-kebab"></span>
+</button>
+<div class="collapse navbar-collapse" id="navigation">
+<!-- <ul class="navbar-nav ml-auto">
+<li class="nav-item">
+<a href="../dashboard.html" class="nav-link text-primary">
+<i class="tim-icons icon-minimal-left"></i> Back to Dashboard
+</a>
+</li>
+<li class="nav-item ">
+<a href="register.html" class="nav-link">
+<i class="tim-icons icon-laptop"></i> Register
+</a>
+</li>
+<li class="nav-item ">
+<a href="login.html" class="nav-link">
+<i class="tim-icons icon-single-02"></i> Login
+</a>
+</li>
+<li class="nav-item  active ">
+<a href="pricing.html" class="nav-link">
+<i class="tim-icons icon-coins"></i> Pricing
+</a>
+</li>
+<li class="nav-item ">
+<a href="lock.html" class="nav-link">
+<i class="tim-icons icon-lock-circle"></i> Lock
+</a>
+</li>
+</ul> -->
+</div>
+</div>
+</nav>
+<div class="modal modal-search fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModal" aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<input type="text" class="form-control" id="inlineFormInputGroup" placeholder="SEARCH">
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<i class="tim-icons icon-simple-remove"></i>
+</button>
+</div>
+</div>
+</div>
+</div>
+
+<div class="wrapper wrapper-full-page ">
+<div class="full-page login-page ">
+
+<div class="content">
+<div class="container">
+<div class="col-lg-4 col-md-6 ml-auto mr-auto">
+<form method="POST" action="{{ route('login') }}">
+                        @csrf
+<div class="card card-login card-white">
+<div class="card-header">
+<img src="{{asset('assets/images/card-primary.png')}}" alt>
+<h1 class="card-title">Log in</h1>
+</div>
+<div class="card-body">
+<div class="input-group">
+<div class="input-group-prepend">
+<div class="input-group-text">
+<i class="tim-icons icon-email-85"></i>
+</div>
+</div>
+<input name="email" type="text" class="form-control" placeholder="Email">
+@error('email')
+    <span class="invalid-feedback" role="alert">
+        <strong>{{ $message }}</strong>
+    </span>
+@enderror
+</div>
+<div class="input-group">
+<div class="input-group-prepend">
+<div class="input-group-text">
+<i class="tim-icons icon-lock-circle"></i>
+</div>
+</div>
+<input name="password" type="password" placeholder="Password" class="form-control">
+@error('password')
+    <span class="invalid-feedback" role="alert">
+        <strong>{{ $message }}</strong>
+    </span>
+@enderror
+</div>
+</div>
+<div class="card-footer">
+<button type="submit" class="btn btn-primary btn-lg btn-block mb-3">Get Started</button>
+<div class="pull-left">
+<h6>
+<a href="{{route('register')}}" class="link footer-link">Create Account</a>
+</h6>
+</div>
+<div class="pull-right">
+<h6>
+<a href="javascript:void(0)" class="link footer-link">Need Help?</a>
+</h6>
+</div>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+<footer class="footer">
+<div class="container-fluid">
+<ul class="nav">
+<li class="nav-item">
+<a href="javascript:void(0)" class="nav-link">
+Creative Tim
+</a>
+</li>
+<li class="nav-item">
+<a href="javascript:void(0)" class="nav-link">
+About Us
+</a>
+</li>
+<li class="nav-item">
+<a href="javascript:void(0)" class="nav-link">
+Blog
+</a>
+</li>
+</ul>
+<div class="copyright">
+©
+<script>
+              document.write(new Date().getFullYear())
+            </script> made with <i class="tim-icons icon-heart-2"></i> by
+<a href="javascript:void(0)" target="_blank">Creative Tim</a> for a better web.
+</div>
+</div>
+</footer>
+</div>
+</div>
+
+<script src="{{asset('assets/js/core/jquery.min.js')}}"></script>
+<!-- <script src="../../assets/js/core/popper.min.js"></script>
+<script src="../../assets/js/core/bootstrap.min.js"></script>
+<script src="../../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+<script src="../../assets/js/plugins/moment.min.js"></script>
+
+<script src="../../assets/js/plugins/bootstrap-switch.js"></script>
+
+<script src="../../assets/js/plugins/sweetalert2.min.js"></script>
+
+<script src="../../assets/js/plugins/jquery.tablesorter.js"></script>
+
+<script src="../../assets/js/plugins/jquery.validate.min.js"></script>
+
+<script src="../../assets/js/plugins/jquery.bootstrap-wizard.js"></script>
+
+<script src="../../assets/js/plugins/bootstrap-selectpicker.js"></script>
+
+<script src="../../assets/js/plugins/bootstrap-datetimepicker.js"></script>
+
+<script src="../../assets/js/plugins/jquery.dataTables.min.js"></script>
+
+<script src="../../assets/js/plugins/bootstrap-tagsinput.js"></script>
+
+<script src="../../assets/js/plugins/jasny-bootstrap.min.js"></script>
+
+<script src="../../assets/js/plugins/fullcalendar/fullcalendar.min.js"></script>
+<script src="../../assets/js/plugins/fullcalendar/daygrid.min.js"></script>
+<script src="../../assets/js/plugins/fullcalendar/timegrid.min.js"></script>
+<script src="../../assets/js/plugins/fullcalendar/interaction.min.js"></script>
+
+<script src="../../assets/js/plugins/jquery-jvectormap.js"></script>
+
+<script src="../../assets/js/plugins/nouislider.min.js"></script>
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGat1sgDZ-3y6fFe6HD7QUziVC6jlJNog"></script>
+
+<script src="../../assets/js/plugins/chartjs.min.js"></script>
+
+<script src="../../assets/js/plugins/bootstrap-notify.js"></script>
+
+<script src="../../assets/js/black-dashboard.min.js?v=1.1.1"></script>
+
+<script src="../../assets/demo/demo.js"></script> -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-46172202-12"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-46172202-12');
+  </script>
+<script>
+    $(document).ready(function() {
+      // Facebook Pixel Code Don't Delete
+      ! function(f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function() {
+          n.callMethod ?
+            n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = '2.0';
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s)
+      }(window,
+        document, 'script', '//connect.facebook.net/en_US/fbevents.js');
+
+      try {
+        fbq('init', '111649226022273');
+        fbq('track', "PageView");
+
+      } catch (err) {
+        console.log('Facebook Track Error:', err);
+      }
+
+
+      //
+      //
+      //
+
+    });
+  </script>
+<noscript>
+    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=111649226022273&ev=PageView&noscript=1" />
+  </noscript>
+<script>
+    $(document).ready(function() {
+      $().ready(function() {
+        $sidebar = $('.sidebar');
+        $navbar = $('.navbar');
+        $main_panel = $('.main-panel');
+
+        $full_page = $('.full-page');
+
+        $sidebar_responsive = $('body > .navbar-collapse');
+        sidebar_mini_active = true;
+        white_color = false;
+
+        window_width = $(window).width();
+
+        fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
+
+
+
+        $('.fixed-plugin a').click(function(event) {
+          if ($(this).hasClass('switch-trigger')) {
+            if (event.stopPropagation) {
+              event.stopPropagation();
+            } else if (window.event) {
+              window.event.cancelBubble = true;
+            }
+          }
+        });
+
+        $('.fixed-plugin .background-color span').click(function() {
+          $(this).siblings().removeClass('active');
+          $(this).addClass('active');
+
+          var new_color = $(this).data('color');
+
+          if ($sidebar.length != 0) {
+            $sidebar.attr('data', new_color);
+          }
+
+          if ($main_panel.length != 0) {
+            $main_panel.attr('data', new_color);
+          }
+
+          if ($full_page.length != 0) {
+            $full_page.attr('filter-color', new_color);
+          }
+
+          if ($sidebar_responsive.length != 0) {
+            $sidebar_responsive.attr('data', new_color);
+          }
+        });
+
+        $('.switch-sidebar-mini input').on("switchChange.bootstrapSwitch", function() {
+          var $btn = $(this);
+
+          if (sidebar_mini_active == true) {
+            $('body').removeClass('sidebar-mini');
+            sidebar_mini_active = false;
+            blackDashboard.showSidebarMessage('Sidebar mini deactivated...');
+          } else {
+            $('body').addClass('sidebar-mini');
+            sidebar_mini_active = true;
+            blackDashboard.showSidebarMessage('Sidebar mini activated...');
+          }
+
+          // we simulate the window Resize so the charts will get updated in realtime.
+          var simulateWindowResize = setInterval(function() {
+            window.dispatchEvent(new Event('resize'));
+          }, 180);
+
+          // we stop the simulation of Window Resize after the animations are completed
+          setTimeout(function() {
+            clearInterval(simulateWindowResize);
+          }, 1000);
+        });
+
+        $('.switch-change-color input').on("switchChange.bootstrapSwitch", function() {
+          var $btn = $(this);
+
+          if (white_color == true) {
+
+            $('body').addClass('change-background');
+            setTimeout(function() {
+              $('body').removeClass('change-background');
+              $('body').removeClass('white-content');
+            }, 900);
+            white_color = false;
+          } else {
+
+            $('body').addClass('change-background');
+            setTimeout(function() {
+              $('body').removeClass('change-background');
+              $('body').addClass('white-content');
+            }, 900);
+
+            white_color = true;
+          }
+
+
+        });
+
+        $('.light-badge').click(function() {
+          $('body').addClass('white-content');
+        });
+
+        $('.dark-badge').click(function() {
+          $('body').removeClass('white-content');
+        });
+      });
+    });
+  </script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"8b5ca0b4bf401546","serverTiming":{"name":{"cfL4":true}},"version":"2024.8.0","token":"1b7cbb72744b40c580f8633c6b62637e"}' crossorigin="anonymous"></script>
+</body>
+</html>
