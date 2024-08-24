@@ -24,7 +24,7 @@
 <div class="row">
     <div class="container mt-5">
         <h2>Create Survey</h2>
-        <form action="{{ route('surveys.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.surveys.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row mb-3">
                 <div class="col-md-6">
@@ -40,6 +40,20 @@
                     </div>
                 </div>
             </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="start_date">Start Date</label>
+                        <input type="date" class="form-control" name="start_date" value="{{ old('start_date') }}" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="end_date">End Date</label>
+                        <input type="date" class="form-control" name="end_date" value="{{ old('end_date') }}" required>
+                    </div>
+                </div>
+            </div>
             <div class="form-group">
                 <label for="image">Survey Image</label>
                 <div class="custom-file">
@@ -50,6 +64,8 @@
                     <img id="preview-image" src="#" alt="Survey Image Preview" class="img-thumbnail" width="150">
                 </div>
             </div>
+
+            
             
 
             <h4>Questions</h4>

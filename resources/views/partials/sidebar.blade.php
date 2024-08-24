@@ -8,6 +8,7 @@
             Survey
           </a>
         </div> -->
+        @if(auth()->user()->role == 'admin')
         <ul class="nav">
           <li class="{{request()->is('home') ? 'active' : ''}}">
             <a href="{{route('home')}}">
@@ -16,19 +17,26 @@
             </a>
           </li>
           <li class="{{request()->is('users') ? 'active' : ''}}">
-            <a href="{{route('users.index')}}">
+            <a href="{{route('admin.users.index')}}">
               <i class="tim-icons icon-chart-pie-36"></i>
               <p>Users</p>
             </a>
           </li>
 
           <li class="{{request()->is('surveys') ? 'active' : ''}}">
-            <a href="{{route('surveys.index')}}">
+            <a href="{{route('admin.surveys.index')}}">
               <i class="tim-icons icon-chart-pie-36"></i>
               <p>Surveys</p>
             </a>
           </li>
 
+          <li class="{{request()->is('withdrawals') ? 'active' : ''}}">
+            <a href="{{route('admin.withdrawals.withdrawal_requests')}}">
+              <i class="tim-icons icon-chart-pie-36"></i>
+              <p>Withdrawals</p>
+            </a>
+          </li>
+<!-- 
           <li>
             <a href="./icons.html">
               <i class="tim-icons icon-atom"></i>
@@ -76,7 +84,34 @@
               <i class="tim-icons icon-spaceship"></i>
               <p>Upgrade to PRO</p>
             </a>
+          </li> -->
+        </ul>
+        @endif
+
+
+        @if(auth()->user()->role == 'user')
+        <ul class="nav">
+          <li class="{{request()->is('home') ? 'active' : ''}}">
+            <a href="{{route('home')}}">
+              <i class="tim-icons icon-chart-pie-36"></i>
+              <p>Dashboard</p>
+            </a>
+          </li>
+
+          <li class="{{request()->is('available_surveys') ? 'active' : ''}}">
+            <a href="{{route('user.available_surveys')}}">
+              <i class="tim-icons icon-chart-pie-36"></i>
+              <p>Available Surveys</p>
+            </a>
+          </li>
+
+          <li class="{{request()->is('earnings') ? 'active' : ''}}">
+            <a href="{{route('user.earnings')}}">
+              <i class="tim-icons icon-chart-pie-36"></i>
+              <p>Earnings</p>
+            </a>
           </li>
         </ul>
+        @endif
       </div>
     </div>

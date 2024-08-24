@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -24,7 +26,25 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $completedSurveys = DB::table('survey_responses')
+            ->select(DB::raw('COUNT(*) as count'), DB::raw('MONTH(created_at) as month'))
+            ->groupBy(DB::raw('MONTH(created_at)'))
+            ->whereYear('created_at', Carbon::now()->year)
+            ->pluck('count', 'month')
+            ->toArray();
+
+        // Initialize chart data with zeroes for all months
+        $chartData = array_fill(1, 12, 0);
+
+        // Fill chart data with actual survey counts
+        foreach ($completedSurveys as $month => $count) {
+            $chartData[$month] = $count;
+        }
+
+        // Convert the data into a JSON-friendly format
+        $chartData = array_values($chartData);
+        return view('home', compact('chartData'));
+        // return view('home');
     }
 
     public function profile() {

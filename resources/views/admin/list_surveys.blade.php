@@ -6,7 +6,7 @@
             <div class="card-header">
                 <h4 class="card-title"> Users </h4>
                 <div class="text-right">
-                    <a href="{{route('surveys.create')}}" class="btn btn-primary btn-sm text-secondary">Add Survey</a>
+                    <a href="{{route('admin.surveys.create')}}" class="btn btn-primary btn-sm text-secondary">Add Survey</a>
                 </div>
             </div>
             
@@ -28,9 +28,9 @@
                                 <td>${{ number_format($survey->reward, 2) }}</td>
                                 <td>{{ $survey->questions_count }}</td>
                                 <td>
-                                    <a href="{{ route('surveys.edit', $survey->id) }}"
+                                    <a href="{{ route('admin.surveys.edit', $survey->id) }}"
                                         class="btn btn-sm btn-warning">Edit</a>
-                                    <form action="{{ route('surveys.destroy', $survey->id) }}" method="POST"
+                                    <form action="{{ route('admin.surveys.destroy', $survey->id) }}" method="POST"
                                         style="display:inline-block;">
                                         @csrf
                                         @method('DELETE')

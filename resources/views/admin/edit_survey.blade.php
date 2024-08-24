@@ -3,14 +3,41 @@
 <div class="row">
     <div class="container mt-5">
         <h2>Edit Survey</h2>
-        <form action="{{ route('surveys.update', $survey->id) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.surveys.update', $survey->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            <div class="form-group">
-                <label for="title">Survey Title</label>
-                <input type="text" name="title" class="form-control" id="title"
-                    value="{{ old('title', $survey->title) }}" required>
+
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="title">Survey Title</label>
+                        <input type="text" name="title" class="form-control" id="title" value="{{ old('title', $survey->title) }}" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="reward">Reward (in dollars)</label>
+                        <input type="number" name="reward" class="form-control" value="{{ old('reward', $survey->reward) }}" id="reward" step="0.01" required>
+                    </div>
+                </div>
             </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="start_date">Start Date</label>
+                        <input type="date" class="form-control" name="start_date" value="{{ old('start_date', $survey->start_date) }}" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="end_date">End Date</label>
+                        <input type="date" class="form-control" name="end_date" value="{{ old('end_date', $survey->end_date) }}" required>
+                    </div>
+                </div>
+            </div>
+
             <div class="form-group">
                 <label for="image">Survey Image</label>
                 @if($survey->image)
@@ -20,11 +47,6 @@
                 </div>
                 @endif
                 <input type="file" name="image" class="form-control-file" id="image">
-            </div>
-            <div class="form-group">
-                <label for="reward">Reward (in dollars)</label>
-                <input type="number" name="reward" class="form-control" id="reward"
-                    value="{{ old('reward', $survey->reward) }}" step="0.01" required>
             </div>
 
             <h4>Questions</h4>
